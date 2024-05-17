@@ -1,0 +1,48 @@
+@import url("poppins.css");
+@import url("roboto.css");
+@import url("inter.css");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply h-[100%];
+  }
+  body {
+    @apply h-[100%];
+  }
+}
+
+@layer components {
+  body {
+    @apply h-[100%] min-w-[300px] overflow-x-hidden bg-white flex flex-col font-inter;
+  }
+  select {
+    accent-color: theme("colors.stone.700");
+  }
+
+  main {
+    @apply w-[100%] min-h-[66dvh] px-2 container mx-auto mb-10 flex-auto;
+  }
+  p {
+    @apply indent-4 p-2 text-[0.85rem]/[1.2rem] lg:text-[1rem]/[1.4rem];
+  }
+  /* Works on Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: theme("colors.stone.500") theme("colors.stone.100");
+  }
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: theme("colors.stone.300");
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: theme("colors.stone.100");
+    border-radius: 20px;
+    border: 2px solid theme("colors.stone.900");
+  }
+}
