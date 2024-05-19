@@ -82,9 +82,7 @@ export default defineWebSocketHandler({
     }
     //Удалить из массива
     if (closeClient) {
-      clients = clients.filter((item) => {
-        item.id !== peer.id;
-      });
+      clients = clients.filter((item) => item.id !== peer.id);
       //console.log("Всего клиентов: ", clients.length);
     }
     // }

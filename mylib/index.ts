@@ -1,3 +1,5 @@
+import { sortBy } from "lodash";
+
 export const offset2Week: number = 14;
 export const ScreenBreakPoint = {
   mobile: 0,
@@ -126,5 +128,44 @@ export function getMax(param: any, paramNameValue: string) {
 
     res = Math.max(...tmp);
   }
+  return res;
+}
+
+export function getMiddle(param: number[]) {
+  let res: number = 0;
+  if (param && param.length > 0) {
+    res = param.reduce((acc, item) => {
+      return (acc = acc + item);
+    }, 0);
+    res = res / param.length;
+  }
+  return res;
+}
+
+export function getAverage(param: number[]): number {
+  let res: number = 0;
+  if (param && param.length > 1) {
+    let tmp = sortBy(param);
+    let ind = tmp.length >> 1;
+    //console.log(ind, tmp.length);
+    if (tmp.length % 2 !== 0) {
+      res = tmp[ind];
+    } else {
+      let valMinus: number = tmp[ind - 1];
+      let valPlus: number = tmp[ind + 1];
+      res = tmp[ind];
+      if (valMinus !== undefined || valMinus !== isNaN) {
+        res = (res + valMinus) / 2;
+      }
+      if (valPlus !== undefined || valPlus !== isNaN) {
+        res = (res + valPlus) / 2;
+      }
+    }
+  } else {
+    if (param) {
+      res = param[0];
+    }
+  }
+
   return res;
 }

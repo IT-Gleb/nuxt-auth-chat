@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { Chart, type ChartItem } from "chart.js/auto";
-import { PriceFormat, getMin, getMax, ScreenBreakPoint } from "~/mylib";
+import {
+  PriceFormat,
+  getMin,
+  getMax,
+  ScreenBreakPoint,
+  getMiddle,
+  getAverage,
+} from "~/mylib";
 import { useBreakpoints } from "@vueuse/core";
 const props = defineProps<{ chartData: TValItem[] }>();
 
@@ -17,6 +24,8 @@ const once = ref<any>("tablet2");
 const middleLarge = ref<boolean>(true);
 const delayed = ref<boolean>(false);
 const isAnimation = ref<boolean>(true);
+
+const GraphData = ref({ Min: "", Max: "", Middle: "", Average: "" });
 
 const breakpoints = useBreakpoints(ScreenBreakPoint);
 
@@ -37,6 +46,14 @@ onMounted(() => {
 
   let Max: number = getMax(tmpData, "value");
   isAnimation.value = props.chartData.length < 120;
+  GraphData.value.Min = PriceFormat(Min);
+  GraphData.value.Max = PriceFormat(Max);
+  let tmpNum: number[] = tmpData.map((item) => item.value);
+
+  //console.log(tmpNum);
+
+  GraphData.value.Middle = PriceFormat(getMiddle(tmpNum));
+  GraphData.value.Average = PriceFormat(getAverage(tmpNum));
 
   myChart.value = new Chart(chartRef.value as ChartItem, {
     data: {
@@ -243,5 +260,27 @@ watch(breakpoints.active(), () => {
     class="w-full relative lg:min-h-[400px] xl:w-full xl:h-full border-2 border-slate-600/300 rounded-2xl overflow-hidden"
   >
     <canvas ref="chartRef" id="graphId"></canvas>
+    <div class="mt-2 w-full p-2 bg-slate-100">
+      <ul
+        class="text-[0.7rem]/[1rem] xl:text-[1rem]/[1.2rem] flex items-start justify-evenly flex-wrap gap-2"
+      >
+        <li>
+          <span class="font-bold text-sky-700">Минимальное:</span>
+          <span class="font-semibold pl-1">{{ GraphData.Min }}</span>
+        </li>
+        <li>
+          <span class="font-bold text-sky-700">Максимальное:</span>
+          <span class="font-semibold pl-1">{{ GraphData.Max }}</span>
+        </li>
+        <li>
+          <span class="font-bold text-sky-700">Среднее:</span>
+          <span class="font-semibold pl-1">{{ GraphData.Middle }}</span>
+        </li>
+        <li>
+          <span class="font-bold text-sky-700">Медианное:</span>
+          <span class="font-semibold pl-1">{{ GraphData.Average }}</span>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
