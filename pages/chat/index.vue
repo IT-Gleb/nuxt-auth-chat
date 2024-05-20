@@ -9,6 +9,16 @@ definePageMeta({
 
 useHead({
   title: "Текстовый чат",
+  meta: [
+    {
+      name: "author",
+      content: "Gleb Torgashin",
+    },
+    {
+      name: "keywords",
+      content: "chat, text, answers",
+    },
+  ],
 });
 </script>
 

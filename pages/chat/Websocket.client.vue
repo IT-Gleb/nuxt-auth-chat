@@ -126,7 +126,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto grid grid-cols-[25%_75%] gap-2 items-start">
+  <div
+    class="container mx-auto grid grid-cols-1 xl:grid-cols-[20%_80%] gap-2 items-start"
+  >
     <div>
       Статус: {{ status }}
       <clientsOnChat :usersOnChat="ListClients" />
@@ -137,7 +139,7 @@ onUnmounted(() => {
       v-if="status === 'OPEN' && isAuth"
       class="w-full lg:w-[80%] mx-auto p-1"
     >
-      <h3>
+      <h3 class="w-fit mx-auto mt-2">
         <span class="font-bold font-roboto">{{ ClientMessage.name }}</span
         >! Добро пожаловать в Чат!
       </h3>
@@ -180,13 +182,14 @@ onUnmounted(() => {
         <form action="#" @submit.prevent="sendData">
           <fieldset class="flex items-start gap-1">
             <input
-              class="w-full p-2 outline-none border-2 border-slate-300/50 rounded-md"
+              class="w-full p-2 outline-none border-2 border-slate-300/50 rounded-md placeholder:text-[0.75rem]/[1rem] placeholder:text-slate-400/60"
               type="text"
               maxlength="100"
               name="textData"
               id="textData"
               v-model="textData"
               autocomplete="off"
+              placeholder="не более 100 символов..."
             />
             <button
               class="p-2 w-fit h-[40px] rounded-lg bg-slate-800 text-white active:scale-90 text-[0.8rem]/[1rem]"
@@ -196,13 +199,13 @@ onUnmounted(() => {
             </button>
           </fieldset>
         </form>
-        <button
+        <!-- <button
           v-if="status === 'OPEN'"
           class="w-fit px-2 py-2 rounded-lg mt-2 bg-slate-800 text-white text-[0.8rem]/[1rem] active:scale-90"
           @click.prevent="CloseHandler"
         >
           Обновить
-        </button>
+        </button> -->
       </div>
     </section>
   </div>

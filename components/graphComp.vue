@@ -247,7 +247,7 @@ watch(breakpoints.active(), () => {
 
         myChart.value?.update();
       } catch {
-        console.log("error");
+        console.log("err");
       }
     }
     once.value = active;
