@@ -16,6 +16,10 @@ export function WSfromUrl(paramURL: string) {
   const url = new URL(paramURL);
   let res: string = "";
   //console.log(url.protocol);
+  let tempHost: string = url.host;
+  if (tempHost[tempHost.length - 1] === ".") {
+    tempHost = tempHost.substring(0, tempHost.length - 2);
+  }
   switch (url.protocol) {
     case "http:":
       res = "ws://";
@@ -27,7 +31,7 @@ export function WSfromUrl(paramURL: string) {
       res = "wss://";
       break;
   }
-  res = res + url.host + import.meta.env.BASE_URL;
+  res = res + tempHost + import.meta.env.BASE_URL;
   res = res.replace(removed, "");
   //  res = res.replaceAll(".", "");
 
@@ -38,8 +42,15 @@ export function HttpfromUrl(paramURL: string) {
   const removed: string = "_nuxt/";
   const url = new URL(paramURL);
   let res: string = url.protocol + "//";
-  res = res + url.host + import.meta.env.BASE_URL;
+  let tempHost: string = url.host;
+  if (tempHost[tempHost.length - 1] === ".") {
+    tempHost = tempHost.substring(0, tempHost.length - 2);
+  }
+
+  res = res + tempHost + import.meta.env.BASE_URL;
   res = res.replace(removed, "");
+
+  //console.log(res);
 
   return res;
 }
