@@ -29,6 +29,7 @@ export function fromUrl(paramURL: string) {
   }
   res = res + url.host + import.meta.env.BASE_URL;
   res = res.replace(removed, "");
+  res = res.replaceAll(".", "");
 
   return res;
 }
