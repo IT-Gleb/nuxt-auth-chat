@@ -51,6 +51,9 @@ export function HttpfromUrl(paramURL: string) {
 
   res = res + tempHost + import.meta.env.BASE_URL;
   res = res.replace(removed, "");
+  if (res[res.length - 1] === ".") {
+    res = res.substring(0, res.length - 2);
+  }
 
   //console.log(res);
 

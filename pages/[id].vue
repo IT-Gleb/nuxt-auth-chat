@@ -45,7 +45,7 @@ const {
   refresh,
 } = await useAsyncData(
   "valutes",
-  () => $fetch(`${valPath}/nuxt_auth_chat/api/valutes`),
+  () => $fetch(`${valPath}nuxt_auth_chat/api/valutes`),
   {
     transform(input: any) {
       //console.log(input);
