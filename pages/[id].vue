@@ -4,6 +4,7 @@ import { useCardStore } from "~/store/cardStore";
 import { useValuteStore } from "~/store/valutesStore";
 import { createHead } from "unhead";
 import { useHead } from "@unhead/vue";
+import { HttpfromUrl } from "~/mylib";
 
 const head = createHead();
 
@@ -34,12 +35,15 @@ const valuteStore = useValuteStore();
 const { setList } = valuteStore;
 const { valutesList } = storeToRefs(valuteStore);
 
+const valPath = HttpfromUrl(import.meta.url);
+//console.log(valPath);
+
 const {
   data: valutes,
   pending,
   error,
   refresh,
-} = await useAsyncData("valutes", () => $fetch("/api/valutes"), {
+} = await useAsyncData("valutes", () => $fetch(`${valPath}/api/valutes`), {
   transform(input: any) {
     //console.log(input);
     if (input) {

@@ -11,7 +11,7 @@ export const ScreenBreakPoint = {
   largeDescktop: 1440,
 };
 
-export function fromUrl(paramURL: string) {
+export function WSfromUrl(paramURL: string) {
   const removed: string = "_nuxt/";
   const url = new URL(paramURL);
   let res: string = "";
@@ -27,6 +27,17 @@ export function fromUrl(paramURL: string) {
       res = "wss://";
       break;
   }
+  res = res + url.host + import.meta.env.BASE_URL;
+  res = res.replace(removed, "");
+  res = res.replaceAll(".", "");
+
+  return res;
+}
+
+export function HttpfromUrl(paramURL: string) {
+  const removed: string = "_nuxt/";
+  const url = new URL(paramURL);
+  let res: string = url.protocol + "//";
   res = res + url.host + import.meta.env.BASE_URL;
   res = res.replace(removed, "");
   res = res.replaceAll(".", "");

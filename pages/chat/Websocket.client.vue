@@ -3,7 +3,7 @@ import { useWsClientStore } from "~/store/wsClientStore";
 import clientId from "./clientId.vue";
 import { useAuthStore } from "~/store/authStore";
 import clientsOnChat from "~/components/clientsOnChat.vue";
-import { fromUrl } from "~/mylib";
+import { WSfromUrl } from "~/mylib";
 
 const history = ref<string[]>([]);
 const textData = ref<string>("");
@@ -14,7 +14,7 @@ const { setClientMessage } = store;
 
 const { isAuth } = storeToRefs(authStore);
 // `ws://localhost:3000/api/websocket?user=${ClientMessage.value.name}`
-const wsUrl = fromUrl(import.meta.url);
+const wsUrl = WSfromUrl(import.meta.url);
 
 const WSAddr = ref<string>(
   `${wsUrl}api/myChat?new=all&user=${ClientMessage.value.name}`

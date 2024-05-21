@@ -4,6 +4,7 @@ import graphComp from "./graphComp.vue";
 import { useValuteStore } from "~/store/valutesStore";
 import listValutes from "./listValutes.vue";
 import loadingComp from "./loading/loadingComp.vue";
+import { HttpfromUrl } from "~/mylib";
 
 const props = defineProps<{ data: TValutaItem[] }>();
 
@@ -23,10 +24,12 @@ const store = useValuteStore();
 const { getItemByID } = store;
 const { SelectedItem } = storeToRefs(store);
 
+const graphValPath = HttpfromUrl(import.meta.url);
+
 const { pending, data, error } = await useAsyncData(
   "graphData",
   () =>
-    $fetch("/api/valdates", {
+    $fetch(`${graphValPath}/api/valdates`, {
       params: {
         query: "val",
         d1: paramD1.value,
