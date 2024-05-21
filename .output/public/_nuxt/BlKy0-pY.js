@@ -1,0 +1,1 @@
+import{a4 as e,G as o,a2 as a}from"./BHZ1H3K9.js";import{u as r}from"./CvP0EubP.js";const s=r(),{isAuth:u}=o(s),m=e((t,i)=>{if(t.params.id!=="")return u.value?void 0:a("/login")});export{m as default};
