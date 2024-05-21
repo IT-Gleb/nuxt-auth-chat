@@ -3,19 +3,24 @@ import { useWsClientStore } from "~/store/wsClientStore";
 import clientId from "./clientId.vue";
 import { useAuthStore } from "~/store/authStore";
 import clientsOnChat from "~/components/clientsOnChat.vue";
+import { fromUrl } from "~/mylib";
 
 const history = ref<string[]>([]);
 const textData = ref<string>("");
 const authStore = useAuthStore();
 const store = useWsClientStore();
 const { ClientMessage, getIsClient } = storeToRefs(store);
-const { setClientMessage, clearClient } = store;
+const { setClientMessage } = store;
 
 const { isAuth } = storeToRefs(authStore);
 // `ws://localhost:3000/api/websocket?user=${ClientMessage.value.name}`
+const wsUrl = fromUrl(import.meta.url);
+
 const WSAddr = ref<string>(
-  `ws://localhost:3000/api/myChat?new=all&user=${ClientMessage.value.name}`
+  `${wsUrl}api/myChat?new=all&user=${ClientMessage.value.name}`
 );
+//console.log(WSAddr.value);
+
 const timerRef = ref<any>(-1);
 const sectionRef = ref<HTMLDivElement>();
 const ListClients = ref<TClient[]>([]);
@@ -130,7 +135,12 @@ onUnmounted(() => {
     class="container mx-auto grid grid-cols-1 xl:grid-cols-[20%_80%] gap-2 items-start"
   >
     <div>
-      Статус: {{ status }}
+      <span
+        >Статус:
+        <span class="text-sky-700 text-[0.8rem]/[1rem]">{{
+          status === "OPEN" ? "Подключено" : "???"
+        }}</span></span
+      >
       <clientsOnChat :usersOnChat="ListClients" />
     </div>
     <!-- <div v-if="data">{{ data }}</div> -->

@@ -11,6 +11,28 @@ export const ScreenBreakPoint = {
   largeDescktop: 1440,
 };
 
+export function fromUrl(paramURL: string) {
+  const removed: string = "_nuxt/";
+  const url = new URL(paramURL);
+  let res: string = "";
+  //console.log(url.protocol);
+  switch (url.protocol) {
+    case "http:":
+      res = "ws://";
+      break;
+    case "https:":
+      res = "wss://";
+      break;
+    default:
+      res = "wss://";
+      break;
+  }
+  res = res + url.host + import.meta.env.BASE_URL;
+  res = res.replace(removed, "");
+
+  return res;
+}
+
 export function PriceFormat(param: number): string {
   let res: string = "";
 

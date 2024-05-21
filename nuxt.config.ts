@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   modules: ["nuxt-icons", "@vee-validate/nuxt", "@pinia/nuxt", "@vueuse/nuxt"],
   css: ["~/assets/css/main.css"],
   app: {
+    baseURL: "/abc/",
     pageTransition: {
       name: "page",
       mode: "out-in",
