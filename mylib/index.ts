@@ -47,6 +47,8 @@ export function HttpfromUrl(paramURL: string) {
     tempHost = tempHost.substring(0, tempHost.length - 2);
   }
 
+  console.log(tempHost, import.meta.env.BASE_URL);
+
   res = res + tempHost + import.meta.env.BASE_URL;
   res = res.replace(removed, "");
 
