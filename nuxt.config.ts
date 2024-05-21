@@ -16,13 +16,13 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    "/api/**": { cors: true },
-    "/*": { cors: true },
+    "/api/**": { cors: false },
+    "/*": { cors: false },
   },
   nitro: {
     routeRules: {
       "/": { prerender: true },
-      "/*": { cors: true },
+      "/*": { cors: false },
     },
     experimental: {
       websocket: true,

@@ -46,16 +46,17 @@ export function HttpfromUrl(paramURL: string) {
   if (tempHost[tempHost.length - 1] === ".") {
     tempHost = tempHost.substring(0, tempHost.length - 2);
   }
+  let b_url: string = import.meta.env.BASE_URL;
+  b_url = b_url.replace(".", "");
+  //console.log(tempHost, b_url);
 
-  console.log(tempHost, import.meta.env.BASE_URL);
-
-  res = res + tempHost + import.meta.env.BASE_URL;
+  res = res + tempHost + b_url;
   res = res.replace(removed, "");
   if (res[res.length - 1] === ".") {
     res = res.substring(0, res.length - 2);
   }
 
-  //console.log(res);
+  console.log(res);
 
   return res;
 }
