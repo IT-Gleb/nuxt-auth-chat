@@ -31,7 +31,11 @@ export function WSfromUrl(paramURL: string) {
       res = "wss://";
       break;
   }
-  res = res + tempHost + import.meta.env.BASE_URL;
+
+  let b_url: string = import.meta.env.BASE_URL;
+  b_url = b_url.replaceAll(".", "");
+
+  res = res + tempHost + b_url;
   res = res.replace(removed, "");
   //  res = res.replaceAll(".", "");
 
