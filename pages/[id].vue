@@ -43,18 +43,22 @@ const {
   pending,
   error,
   refresh,
-} = await useAsyncData("valutes", () => $fetch(`/api/valutes`), {
-  transform(input: any) {
-    //console.log(input);
-    if (input) {
-      setList(input.data as TValutaItem[]);
-    }
-    return input;
-  },
-  getCachedData(key, nuxtApp) {
-    return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
-  },
-});
+} = await useAsyncData(
+  "valutes",
+  () => $fetch(`https://it-gleb.github.io/nuxt-auth-chat/api/valutes`),
+  {
+    transform(input: any) {
+      //console.log(input);
+      if (input) {
+        setList(input.data as TValutaItem[]);
+      }
+      return input;
+    },
+    getCachedData(key, nuxtApp) {
+      return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
+    },
+  }
+);
 
 // if (!valutes.value?.error) {
 //   if (valutes.value) {

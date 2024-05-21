@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   modules: ["nuxt-icons", "@vee-validate/nuxt", "@pinia/nuxt", "@vueuse/nuxt"],
   css: ["~/assets/css/main.css"],
   app: {
-    baseURL: "/nuxt_auth_chat/",
+    baseURL: "/nuxt-auth-chat/",
     pageTransition: {
       name: "page",
       mode: "out-in",
@@ -17,8 +17,13 @@ export default defineNuxtConfig({
 
   routeRules: {
     "/api/**": { cors: true },
+    "/*": { cors: true },
   },
   nitro: {
+    routeRules: {
+      "/": { prerender: true },
+      "/*": { cors: true },
+    },
     experimental: {
       websocket: true,
     },
