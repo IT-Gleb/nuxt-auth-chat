@@ -29,7 +29,7 @@ export function WSfromUrl(paramURL: string) {
   }
   res = res + url.host + import.meta.env.BASE_URL;
   res = res.replace(removed, "");
-  res = res.replaceAll(".", "");
+  //  res = res.replaceAll(".", "");
 
   return res;
 }
@@ -40,7 +40,6 @@ export function HttpfromUrl(paramURL: string) {
   let res: string = url.protocol + "//";
   res = res + url.host + import.meta.env.BASE_URL;
   res = res.replace(removed, "");
-  res = res.replaceAll(".", "");
 
   return res;
 }
