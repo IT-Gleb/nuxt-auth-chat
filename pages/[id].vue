@@ -43,7 +43,7 @@ const {
   pending,
   error,
   refresh,
-} = await useAsyncData("valutes", () => $fetch(`${valPath}api/valutes`), {
+} = await useAsyncData("valutes", () => $fetch(`/api/valutes`), {
   transform(input: any) {
     //console.log(input);
     if (input) {

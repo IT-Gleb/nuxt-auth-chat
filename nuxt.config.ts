@@ -21,7 +21,6 @@ export default defineNuxtConfig({
   },
   nitro: {
     routeRules: {
-      "/": { prerender: true },
       "/*": { cors: true },
     },
     experimental: {
@@ -36,3 +35,4 @@ export default defineNuxtConfig({
     },
   },
 });
+// "/": { prerender: true },

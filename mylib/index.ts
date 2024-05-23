@@ -60,7 +60,7 @@ export function HttpfromUrl(paramURL: string) {
     res = res.substring(0, res.length - 2);
   }
 
-  console.log(res);
+  //console.log(res);
 
   return res;
 }
