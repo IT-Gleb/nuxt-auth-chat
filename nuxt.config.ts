@@ -14,14 +14,28 @@ export default defineNuxtConfig({
       mode: "out-in",
     },
   },
-
   routeRules: {
-    "/api/**": { cors: true },
-    "/*": { cors: true },
+    "/**": {
+      cors: true,
+      headers: {
+        "access-control-allow-methods": "GET,HEAD,PATCH,POST,DELETE",
+        "access-control-allow-origin": "*",
+        "access-control-allow-credentials": "true",
+      },
+    },
   },
+
   nitro: {
     routeRules: {
       "/*": { cors: true },
+      "api/**": {
+        cors: true,
+        headers: {
+          "access-control-allow-methods": "GET,HEAD,PATCH,POST,DELETE",
+          "access-control-allow-origin": "*",
+          "access-control-allow-credentials": "true",
+        },
+      },
     },
     experimental: {
       websocket: true,
@@ -36,3 +50,7 @@ export default defineNuxtConfig({
   },
 });
 // "/": { prerender: true },
+// routeRules: {
+//   "/api/**": { cors: true },
+//   "/*": { cors: true },
+// },

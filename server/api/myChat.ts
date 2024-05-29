@@ -8,14 +8,17 @@ export default defineWebSocketHandler({
   open(peer) {
     peer.subscribe(room);
 
-    console.log("ws-open", peer, peer.readyState, peer.addr, peer.url);
+    //console.log("ws-open", peer, peer.readyState, peer.addr, peer.url);
+    console.log("ws-open", peer);
 
     //Получить имя клиента
-    let param = new URLSearchParams("ws://" + peer.addr + peer.url);
+    //let param = new URLSearchParams("ws://" + peer.addr + peer.url);
+    let param = new URLSearchParams(peer.url);
     let userName: string | null = "";
     if (param.has("user")) {
       userName = param.get("user");
     }
+    //console.log(userName);
 
     //console.log(param, ",", userName);
     userName = userName !== null ? userName : "Anonimus-" + peer.id;

@@ -12,14 +12,14 @@ export const ScreenBreakPoint = {
 };
 
 export function WSfromUrl(paramURL: string) {
+  //console.log(paramURL);
   const removed: string = "_nuxt/";
   const url = new URL(paramURL);
   let res: string = "";
   //console.log(url.protocol);
   let tempHost: string = url.host;
-  if (tempHost[tempHost.length - 1] === ".") {
-    tempHost = tempHost.substring(0, tempHost.length - 2);
-  }
+  //let tempHost: string = "127.0.0.1:3000";
+
   switch (url.protocol) {
     case "http:":
       res = "ws://";
@@ -32,12 +32,14 @@ export function WSfromUrl(paramURL: string) {
       break;
   }
 
-  let b_url: string = import.meta.env.BASE_URL;
+  //let b_url: string = import.meta.env.BASE_URL;
+  let b_url: string = "/nuxt-auth-chat/";
   b_url = b_url.replaceAll(".", "");
 
   res = res + tempHost + b_url;
   res = res.replace(removed, "");
   //  res = res.replaceAll(".", "");
+  console.log(res);
 
   return res;
 }
