@@ -5,7 +5,7 @@ definePageMeta({
   layout: "main",
 });
 
-const path_to_ico = ref<string>(HttpfromUrl(import.meta.env.BASE_URL));
+const path_to_ico = ref<string>(HttpfromUrl("https://it-gleb.github.io"));
 
 useHead({
   title: "Главная страница",

@@ -39,9 +39,9 @@ export function WSfromUrl(paramURL: string) {
   b_url = b_url.replaceAll(".", "");
 
   res = res + tempHost + b_url;
-  res = res.replace(removed, "");
+  //res = res.replace(removed, "");
   //  res = res.replaceAll(".", "");
-  console.log(res);
+  // console.log(res);
 
   return res;
 }
@@ -56,7 +56,7 @@ export function HttpfromUrl(paramURL: string) {
   }
   let b_url: string = import.meta.env.BASE_URL;
   b_url = bb_URL;
-  b_url = b_url.replace(".", "");
+  b_url = b_url.replaceAll(".", "");
   //console.log(tempHost, b_url);
 
   res = res + tempHost + b_url;
@@ -65,7 +65,7 @@ export function HttpfromUrl(paramURL: string) {
     res = res.substring(0, res.length - 2);
   }
 
-  //console.log(res);
+  console.log(res);
 
   return res;
 }
