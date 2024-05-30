@@ -29,7 +29,7 @@ const graphValPath = HttpfromUrl(import.meta.url);
 const { pending, data, error } = await useAsyncData(
   "graphData",
   () =>
-    $fetch(`/api/valdates`, {
+    $fetch(`${graphValPath}api/valdates`, {
       params: {
         query: "val",
         d1: paramD1.value,
