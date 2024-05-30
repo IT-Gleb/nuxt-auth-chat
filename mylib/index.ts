@@ -53,6 +53,7 @@ export function HttpfromUrl(paramURL: string) {
     tempHost = tempHost.substring(0, tempHost.length - 2);
   }
   let b_url: string = import.meta.env.BASE_URL;
+  b_url = "/auth-nuxt-chat/";
   b_url = b_url.replace(".", "");
   //console.log(tempHost, b_url);
 
