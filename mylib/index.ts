@@ -1,5 +1,7 @@
 import { sortBy } from "lodash";
 
+const bb_URL: string = "/nuxt-auth-chat/";
+
 export const offset2Week: number = 14;
 export const ScreenBreakPoint = {
   mobile: 0,
@@ -33,7 +35,7 @@ export function WSfromUrl(paramURL: string) {
   }
 
   //let b_url: string = import.meta.env.BASE_URL;
-  let b_url: string = "/nuxt-auth-chat/";
+  let b_url: string = bb_URL;
   b_url = b_url.replaceAll(".", "");
 
   res = res + tempHost + b_url;
@@ -53,7 +55,7 @@ export function HttpfromUrl(paramURL: string) {
     tempHost = tempHost.substring(0, tempHost.length - 2);
   }
   let b_url: string = import.meta.env.BASE_URL;
-  b_url = "/auth-nuxt-chat/";
+  b_url = bb_URL;
   b_url = b_url.replace(".", "");
   //console.log(tempHost, b_url);
 

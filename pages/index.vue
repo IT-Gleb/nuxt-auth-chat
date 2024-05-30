@@ -1,13 +1,24 @@
 <script setup lang="ts">
+import { HttpfromUrl } from "~/mylib";
+
 definePageMeta({
   layout: "main",
 });
+
+const path_to_ico = ref<string>(HttpfromUrl(import.meta.env.BASE_URL));
 
 useHead({
   title: "Главная страница",
   htmlAttrs: {
     lang: "ru",
   },
+  link: [
+    {
+      rel: "icon",
+      type: "image/x-icon",
+      href: `${path_to_ico.value}favicon.ico`,
+    },
+  ],
   meta: [
     {
       name: "description",
